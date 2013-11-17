@@ -3,7 +3,9 @@
 #include "pwm.h"
 
 int ticks;
-int angle[4] = {0,0,0,0};
+float angle = 0.0;
+float servo_angle = 0.0;
+float angle_delta = (1.0);
 
 /**
   * @brief Program entry point
@@ -17,10 +19,14 @@ int main (void) {
 		while(!ticks);
 		ticks = 0;
 		printf("main\n");
-		TIM3->CCR1 = 300 /*600 + ((angle[0] + 90) * 10)*/;
-		TIM3->CCR2 = 300;
-		TIM3->CCR3 = 300;
-		TIM3->CCR4 = 300;
+		TIM3->CCR2 = 1050 + (servo_angle * (450.0/45.0));
+		
+		servo_angle += angle_delta;
+		
+		if ((servo_angle >= 90) || (servo_angle <= -90)) {
+			angle_delta = -angle_delta;
+			servo_angle += angle_delta;
+		}
 	}
 }
 
