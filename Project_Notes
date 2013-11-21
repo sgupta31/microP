@@ -1,0 +1,14 @@
+Servo Motor Connection
+Servo motors have three wires: power, ground, and signal. The power wire is typically red, and should be connected to the 5V pin on the Arduino board. The ground wire is typically black or brown and should be connected to a ground pin on the Arduino board. The signal pin is typically yellow, orange or white and should be connected to a digital pin on the Arduino board. Note that servos draw considerable power, so if you need to drive more than one or two, you'll probably need to power them from a separate supply (i.e. not the +5V pin on your Arduino). Be sure to connect the grounds of the Arduino and external power supply together.
+http://arduino.cc/en/reference/servo
+http://www.servocity.com/html/how_do_servos_work_.html
+Timer for PWM (values for prescalar and period¬)
+http://www.kaltpost.de/?page_id=412
+https://my.st.com/public/STe2ecommunities/mcu/Lists/STM32VLDiscovery/Flat.aspx?RootFolder=/public/STe2ecommunities/mcu/Lists/STM32VLDiscovery/Servo%20control%20using%20STM32VLDiscovery&FolderCTID=0x01200200770978C69A1141439FE559EB459D758000491D59B8574F8049B5DFA3E8B21CBA51&currentviews=1106
+Connecting motor to the board
+http://www.fatlion.com/sailplanes/servos.html
+LCD
+https://my.st.com/public/STe2ecommunities/mcu/Lists/STM32Discovery/Flat.aspx?RootFolder=/public/STe2ecommunities/mcu/Lists/STM32Discovery/LCD%20on%20STM32F4%20Discovery&FolderCTID=0x01200200770978C69A1141439FE559EB459D75800084C20D8867EAD444A5987D47BE638E0F&currentviews=233
+https://plus.google.com/u/0/107064446910059011232/posts/j1p2woAR6Lr
+Keypad
+https://my.st.com/public/STe2ecommunities/mcu/Lists/STM8Discovery/Flat.aspx?RootFolder=https%3a%2f%2fmy%2est%2ecom%2fpublic%2fSTe2ecommunities%2fmcu%2fLists%2fSTM8Discovery%2fDiscovery%20with%20LCD%20and%204x3%20keypad%20example&FolderCTID=0x01200200770978C69A1141439FE559EB459D7580004008F0975979A844820611B699DF2ED1&currentviews=942
