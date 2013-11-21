@@ -4,18 +4,6 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 H:\microP\G01_Final_Project\rtx_project\keil\rtx.uvproj
-Project File Date:  11/17/2013
+Project File Date:  11/21/2013
 
 <h2>Output:</h2>
-Build target 'Project'
-compiling main.c...
-../main.c(21): warning:  #223-D: function "printf" declared implicitly
-compiling pwm.c...
-linking...
-Program Size: Code=12060 RO-data=528 RW-data=108 ZI-data=8148  
-FromELF: creating hex file...
-".\obj\output.axf" - 0 Error(s), 1 Warning(s).
-Load "H:\\microP\\G01_Final_Project\\rtx_project\\keil\\obj\\output.axf" 
-Erase Done.
-Programming Done.
-Verify OK.

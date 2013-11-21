@@ -1,11 +1,9 @@
 #include "arm_math.h"
 #include "stm32f4xx.h"
 #include "pwm.h"
+#include "servo.h"
 
 int ticks;
-float angle = 0.0;
-float servo_angle = 0.0;
-float angle_delta = (1.0);
 
 /**
   * @brief Program entry point
@@ -19,14 +17,21 @@ int main (void) {
 		while(!ticks);
 		ticks = 0;
 		printf("main\n");
-		TIM3->CCR2 = 1050 + (servo_angle * (450.0/45.0));
 		
-		servo_angle += angle_delta;
+		float alpha = 0.0;
+		float beta = 0.0;
 		
-		if ((servo_angle >= 90) || (servo_angle <= -90)) {
-			angle_delta = -angle_delta;
-			servo_angle += angle_delta;
-		}
+		alpha_motor(alpha);
+		beta_motor(beta);
+		
+// 		TIM3->CCR2 = 1050 + (servo_angle * (450.0/45.0));
+// 		
+// 		servo_angle += angle_delta;
+// 		
+// 		if ((servo_angle >= 90) || (servo_angle <= -90)) {
+// 			angle_delta = -angle_delta;
+// 			servo_angle += angle_delta;
+// 		}
 	}
 }
 
