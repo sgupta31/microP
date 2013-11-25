@@ -18,7 +18,7 @@ void PWM_GPIO(void){
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF; /* Set the mode to alternating function for PWM */
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
@@ -26,6 +26,7 @@ void PWM_GPIO(void){
 	GPIO_Init(GPIOC, &GPIO_InitStructure);
 	
 	/* Connect TIM3 pins to GPIO pin sources */
+	GPIO_PinAFConfig(GPIOC, GPIO_PinSource6, GPIO_AF_TIM3);  
   GPIO_PinAFConfig(GPIOC, GPIO_PinSource7, GPIO_AF_TIM3);  
 
 }
@@ -52,6 +53,7 @@ void PWM_TIM(void){
   TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
 	
 	/* PWM1 Mode configuration: Channels 1,2,3 and 4 */
+	TIM_OC1Init(TIM3, &TIM_OCInitStructure);
 	TIM_OC2Init(TIM3, &TIM_OCInitStructure);
 
   /* TIM3 enable counter */

@@ -21,7 +21,7 @@ int main (void) {
 		float alpha = 0.0;
 		float beta = 0.0;
 		
-		alpha_motor(alpha);
+		//alpha_motor(alpha);
 		beta_motor(beta);
 		
 // 		TIM3->CCR2 = 1050 + (servo_angle * (450.0/45.0));
