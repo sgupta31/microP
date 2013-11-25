@@ -40,3 +40,5 @@
 .\obj\main.o: ../STM32F4xx_StdPeriph_Driver/inc/misc.h
 .\obj\main.o: ../pwm.h
 .\obj\main.o: ../servo.h
+.\obj\main.o: ../lcd.h
+.\obj\main.o: C:\Keil\ARM\ARMCC\bin\..\include\inttypes.h

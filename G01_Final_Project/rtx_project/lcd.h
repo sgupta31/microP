@@ -9,29 +9,29 @@
 #define HD44780_GPIO_CLOCK2 	RCC_AHB1Periph_GPIOB
 
 
-#define HD44780_RS					GPIO_Pin_7
+#define HD44780_RS					GPIO_Pin_9
 #define GPIO_PORT_RS		        GPIOE
 
-#define HD44780_E 					GPIO_Pin_8
+#define HD44780_E 					GPIO_Pin_10
 #define GPIO_PORT_E		            GPIOE
 
-#define HD44780_DB0					GPIO_Pin_9
+#define HD44780_DB0					GPIO_Pin_11
 #define GPIO_PORT_DB0		        GPIOE
 
-#define HD44780_DB1					GPIO_Pin_10
+#define HD44780_DB1					GPIO_Pin_12
 #define GPIO_PORT_DB1		        GPIOE
 
-#define HD44780_DB2					GPIO_Pin_11
+#define HD44780_DB2					GPIO_Pin_13
 #define GPIO_PORT_DB2		        GPIOE
 
-#define HD44780_DB3					GPIO_Pin_12
+#define HD44780_DB3					GPIO_Pin_14
 #define GPIO_PORT_DB3		        GPIOE
 
-#define HD44780_DB4					GPIO_Pin_13
+#define HD44780_DB4					GPIO_Pin_15
 #define GPIO_PORT_DB4		        GPIOE
 
-#define HD44780_DB5					GPIO_Pin_14
-#define GPIO_PORT_DB5		        GPIOE
+#define HD44780_DB5					GPIO_Pin_10
+#define GPIO_PORT_DB5		        GPIOB
 
 #define HD44780_DB6					GPIO_Pin_11
 #define GPIO_PORT_DB6		        GPIOB
@@ -46,6 +46,7 @@
 #define HD44780_TWO_LINE_ENABLE		    0x38
 #define HD44780_8_BIT_MODE              0x30
 
+#define HD44780_DISPLAY_UNDERLINE_BLINK_ON	0x0F
 #define HD44780_DISPLAY_ON				0x0C
 #define HD44780_CURSOR_UNDERLINE        0x02
 #define HD44780_CURSOR_BLINK 			0x01
@@ -119,4 +120,7 @@ void hd44780_write_char(char *text, uint8_t length);
 void hd44780_move_cursor(uint8_t location);
 
 void hd44780_move_second_line(void);
+
+void hd44780_blink_display(void);
+
 #endif

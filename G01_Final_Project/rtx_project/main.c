@@ -2,39 +2,47 @@
 #include "stm32f4xx.h"
 #include "pwm.h"
 #include "servo.h"
+#include "lcd.h"
 
 int ticks;
+
+void delay(int delay);
 
 /**
   * @brief Program entry point
   */
 int main (void) {
 	PWM_configure();
-	ticks = 0;
+	hd44780_init();
 	
+	ticks = 0;
+	printf("main\n");
 	while(1) {
 		
 		while(!ticks);
 		ticks = 0;
-		printf("main\n");
 		
 		float alpha = 0.0;
 		float beta = 0.0;
 		
-		//alpha_motor(alpha);
+		alpha_motor(alpha);
 		beta_motor(beta);
 		
-// 		TIM3->CCR2 = 1050 + (servo_angle * (450.0/45.0));
+// 		hd44780_clear_display();
+// 		osDelay(1000);
 // 		
-// 		servo_angle += angle_delta;
-// 		
-// 		if ((servo_angle >= 90) || (servo_angle <= -90)) {
-// 			angle_delta = -angle_delta;
-// 			servo_angle += angle_delta;
-// 		}
+// 		hd44780_blink_display();
+		
+// 		hd44780_write_char("uP", 2);
+// 		osDelay(1000);
+// 		hd44780_write_char(" is", 3);
+// 		osDelay(1000);
+// 		hd44780_move_second_line();
+// 		hd44780_write_char("awesome!", 8);
+		osDelay(5000);
+		
 	}
 }
-
 
 void TIM3_IRQHandler(void)
 {
@@ -43,4 +51,10 @@ void TIM3_IRQHandler(void)
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update); // Clear the TIM3 interrupt pending bit
 		ticks = 1;
 	}
+}
+
+void delay(int delay)
+{
+	int i;
+	for (i=0; i<delay; i++);
 }
