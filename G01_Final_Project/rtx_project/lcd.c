@@ -1,6 +1,5 @@
 #include "lcd.h"
 #include "cmsis_os.h"
-
 /**
  * === HD44780 Driver! ===
  *
@@ -46,6 +45,7 @@ static void gpio_hd44780_init(void) {
 	/* Enable the GPIO clock */
 	RCC_AHB1PeriphClockCmd(HD44780_GPIO_CLOCK1, ENABLE);  
 	RCC_AHB1PeriphClockCmd(HD44780_GPIO_CLOCK2, ENABLE);
+
     
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
@@ -105,14 +105,14 @@ void hd44780_init(void) {
     hd44780_send_data(HD44780_TWO_LINE_ENABLE, RS_COMMAND);
 
 	/* switch on the display */
-	hd44780_send_data(HD44780_DISPLAY_ONs, RS_COMMAND);
+	hd44780_send_data(HD44780_DISPLAY_ON, RS_COMMAND);
 }
 
 void hd44780_send_data(uint8_t val, uint8_t rs_line) {
 
     /* Set all the gpio pins on or off depending on variable val */
 	GPIO_WriteBit(GPIO_PORT_DB0, HD44780_DB0, BIT_ACTION(0x01 & val));
-
+	
 	val >>= 1;
 	GPIO_WriteBit(GPIO_PORT_DB1, HD44780_DB1, BIT_ACTION(0x01 & val));
 
@@ -122,16 +122,16 @@ void hd44780_send_data(uint8_t val, uint8_t rs_line) {
 	val >>= 1;
 	GPIO_WriteBit(GPIO_PORT_DB3, HD44780_DB3, BIT_ACTION(0x01 & val)); 
 
-  val >>= 1;
+    val >>= 1;
 	GPIO_WriteBit(GPIO_PORT_DB4, HD44780_DB4, BIT_ACTION(0x01 & val));
-    
-	val >>= 1;
+
+    val >>= 1;
 	GPIO_WriteBit(GPIO_PORT_DB5, HD44780_DB5, BIT_ACTION(0x01 & val));
     
-	val >>= 1;
+    val >>= 1;
 	GPIO_WriteBit(GPIO_PORT_DB6, HD44780_DB6, BIT_ACTION(0x01 & val));
     
-	val >>= 1;
+    val >>= 1;
 	GPIO_WriteBit(GPIO_PORT_DB7, HD44780_DB7, BIT_ACTION(0x01 & val));
        
 	/* write the data to the display */
@@ -148,29 +148,23 @@ void hd44780_enable_write(uint8_t rs_line) {
 	GPIO_WriteBit(GPIO_PORT_RS, HD44780_RS, BIT_ACTION(rs_line));
     
 	osDelay(1);
-
+    
 	/* Set the Enable pin high */
 	GPIO_SetBits(GPIO_PORT_E, HD44780_E);
 	osDelay(1);
- 
+    
 	/* Set the Enable pin low -- data written to lcd */
 	GPIO_ResetBits(GPIO_PORT_E, HD44780_E);
 	osDelay(1);
-
 }
 
 void hd44780_clear_display(void) {
 	hd44780_send_data(HD44780_CLEAR_DISPLAY, RS_COMMAND);
 }
 
-void hd44780_blink_display(void) {
-	printf("blink\n");
-	hd44780_send_data(HD44780_CURSOR_UNDERLINE, RS_COMMAND);
-}
-
 void hd44780_write_char(char *text, uint8_t length) {
 	uint8_t i;
-printf("write char to lcd\n");
+
 	for(i = 0; i < length; ++i) {
 		/* write char to display */
 		hd44780_send_data(*text, RS_CHAR);
@@ -186,4 +180,8 @@ void hd44780_move_cursor(uint8_t location) {
 
 void hd44780_move_second_line(void) {
     hd44780_move_cursor(40);
+}
+
+void hd44780_blink_cursor(void) {
+	hd44780_send_data(HD44780_CURSOR_BLINK_UNDERLINE, RS_COMMAND);
 }

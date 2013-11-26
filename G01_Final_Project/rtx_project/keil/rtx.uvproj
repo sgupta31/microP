@@ -467,6 +467,16 @@
               <FileType>5</FileType>
               <FilePath>..\lcd.h</FilePath>
             </File>
+            <File>
+              <FileName>keypad.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\keypad.c</FilePath>
+            </File>
+            <File>
+              <FileName>keypad.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\keypad.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

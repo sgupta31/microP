@@ -12,7 +12,7 @@ void delay(int delay);
   * @brief Program entry point
   */
 int main (void) {
-	PWM_configure();
+ 	PWM_configure();
 	hd44780_init();
 	
 	ticks = 0;
@@ -22,24 +22,23 @@ int main (void) {
 		while(!ticks);
 		ticks = 0;
 		
-		float alpha = 0.0;
-		float beta = 0.0;
-		
-		alpha_motor(alpha);
-		beta_motor(beta);
-		
-// 		hd44780_clear_display();
-// 		osDelay(1000);
+// 		float alpha = 0.0;
+// 		float beta = 0.0;
 // 		
-// 		hd44780_blink_display();
+// 		alpha_motor(alpha);
+// 		beta_motor(beta);
 		
-// 		hd44780_write_char("uP", 2);
-// 		osDelay(1000);
-// 		hd44780_write_char(" is", 3);
-// 		osDelay(1000);
-// 		hd44780_move_second_line();
-// 		hd44780_write_char("awesome!", 8);
-		osDelay(5000);
+		hd44780_clear_display();
+		hd44780_blink_cursor();
+		osDelay(1000);
+    hd44780_write_char("uP", 2);
+    osDelay(1000);
+    hd44780_write_char(" is", 3);
+    osDelay(1000);
+    hd44780_move_second_line();
+		osDelay(1000);
+		hd44780_write_char(" awesome!", 8);
+    osDelay(5000);
 		
 	}
 }

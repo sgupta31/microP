@@ -1,5 +1,5 @@
-#ifndef __HD44780_H
-#define __HD44780_H
+#ifndef __LCD_H
+#define __LCD_H
 
 #include <inttypes.h>
 #include "stm32f4xx.h"
@@ -39,17 +39,18 @@
 #define HD44780_DB7					GPIO_Pin_12
 #define GPIO_PORT_DB7		        GPIOB
 
-#define RS_COMMAND					0
+#define RS_COMMAND				0
 #define RS_CHAR						1
 
 
 #define HD44780_TWO_LINE_ENABLE		    0x38
 #define HD44780_8_BIT_MODE              0x30
 
-#define HD44780_DISPLAY_UNDERLINE_BLINK_ON	0x0F
 #define HD44780_DISPLAY_ON				0x0C
-#define HD44780_CURSOR_UNDERLINE        0x02
-#define HD44780_CURSOR_BLINK 			0x01
+#define HD44780_CURSOR_UNDERLINE  0x02
+#define HD44780_CURSOR_BLINK 			0x09
+#define HD44780_CURSOR_BLINK_UNDERLINE 			0x0F
+
 
 #define HD44780_CLEAR_DISPLAY			0x01
 #define HD44780_LOCATION_COMMAND        0x80
@@ -121,6 +122,6 @@ void hd44780_move_cursor(uint8_t location);
 
 void hd44780_move_second_line(void);
 
-void hd44780_blink_display(void);
+void hd44780_blink_cursor(void) ;
 
 #endif
