@@ -8,14 +8,65 @@ Project File Date:  11/26/2013
 
 <h2>Output:</h2>
 Build target 'Project'
+compiling main.c...
+../main.c(19): warning:  #223-D: function "printf" declared implicitly
+compiling keypad.c...
+..\keypad.c(129): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(134): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(139): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(148): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(152): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(156): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(160): warning:  #223-D: function "printf" declared implicitly
 linking...
-Program Size: Code=11596 RO-data=528 RW-data=96 ZI-data=8144  
+Program Size: Code=12080 RO-data=528 RW-data=112 ZI-data=8144  
 FromELF: creating hex file...
-".\obj\output.axf" - 0 Error(s), 0 Warning(s).
+".\obj\output.axf" - 0 Error(s), 8 Warning(s).
 Load "H:\\microP\\G01_Final_Project\\rtx_project\\keil\\obj\\output.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
 Build target 'Project'
+compiling keypad.c...
+..\keypad.c(28): error:  #20: identifier "KEYPAD_PD0" is undefined
+..\keypad.c(63): error:  #20: identifier "KEYPAD_PD0" is undefined
+..\keypad.c(110): error:  #20: identifier "KEYPAD_PD0" is undefined
+..\keypad.c(129): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(134): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(139): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(147): error:  #20: identifier "KEYPAD_PD" is undefined
+..\keypad.c(148): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(152): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(156): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(160): warning:  #223-D: function "printf" declared implicitly
+Target not created
+Build target 'Project'
+compiling main.c...
+../main.c(19): warning:  #223-D: function "printf" declared implicitly
+compiling keypad.c...
+..\keypad.c(129): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(134): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(139): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(147): error:  #20: identifier "KEYPAD_PD" is undefined
+..\keypad.c(148): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(152): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(156): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(160): warning:  #223-D: function "printf" declared implicitly
+Target not created
+Build target 'Project'
+compiling keypad.c...
+..\keypad.c(129): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(134): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(139): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(148): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(152): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(156): warning:  #223-D: function "printf" declared implicitly
+..\keypad.c(160): warning:  #223-D: function "printf" declared implicitly
 linking...
-Program Size: Code=11596 RO-data=528 RW-data=96 ZI-data=8144  
+Program Size: Code=12080 RO-data=528 RW-data=112 ZI-data=8144  
 FromELF: creating hex file...
-".\obj\output.axf" - 0 Error(s), 0 Warning(s).
+".\obj\output.axf" - 0 Error(s), 7 Warning(s).
 Load "H:\\microP\\G01_Final_Project\\rtx_project\\keil\\obj\\output.axf" 
+Erase Done.
+Programming Done.
+Verify OK.

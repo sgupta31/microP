@@ -3,10 +3,9 @@
 #include "pwm.h"
 #include "servo.h"
 #include "lcd.h"
+#include "keypad.h"
 
 int ticks;
-
-void delay(int delay);
 
 /**
   * @brief Program entry point
@@ -14,6 +13,7 @@ void delay(int delay);
 int main (void) {
  	PWM_configure();
 	hd44780_init();
+	keypad_configuration();
 	
 	ticks = 0;
 	printf("main\n");
@@ -28,17 +28,19 @@ int main (void) {
 // 		alpha_motor(alpha);
 // 		beta_motor(beta);
 		
-		hd44780_clear_display();
-		hd44780_blink_cursor();
-		osDelay(1000);
-    hd44780_write_char("uP", 2);
-    osDelay(1000);
-    hd44780_write_char(" is", 3);
-    osDelay(1000);
-    hd44780_move_second_line();
-		osDelay(1000);
-		hd44780_write_char(" awesome!", 8);
-    osDelay(5000);
+// 		hd44780_clear_display();
+// 		hd44780_blink_cursor();
+// 		osDelay(1000);
+//     hd44780_write_char("uP", 2);
+//     osDelay(1000);
+//     hd44780_write_char(" is", 3);
+//     osDelay(1000);
+//     hd44780_move_second_line();
+// 		osDelay(1000);
+// 		hd44780_write_char("awesome!", 8);
+//     osDelay(5000);
+
+		keypad_press_check();
 		
 	}
 }
@@ -52,8 +54,3 @@ void TIM3_IRQHandler(void)
 	}
 }
 
-void delay(int delay)
-{
-	int i;
-	for (i=0; i<delay; i++);
-}

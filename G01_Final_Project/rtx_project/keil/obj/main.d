@@ -42,3 +42,4 @@
 .\obj\main.o: ../servo.h
 .\obj\main.o: ../lcd.h
 .\obj\main.o: C:\Keil\ARM\ARMCC\bin\..\include\inttypes.h
+.\obj\main.o: ../keypad.h
