@@ -2,34 +2,13 @@
 #include "cmsis_os.h"
 /**
  * === HD44780 Driver! ===
- *
- * == General notes:
- *
  * Contrast line should be connected to GND
  * R/W line should be connected to GND since we always write to LCD
  *
  * Vss connect to GND
- * Vdd can be connected to +5V or +3V
+ * Vdd can be connected to +5V
  *
  * See the header file to see the port assignments
- *
- * Usage example:
- * int main (void) {
- *
- *   hd44780_init();
- *   
- *   while(1) {
- *       hd44780_clear_display();
- *       osDelay(1000);
- *       hd44780_write_char("uP", 2);
- *       osDelay(1000);
- *       hd44780_write_char(" is", 3);
- *       osDelay(1000);
- *       hd44780_move_second_line();
- *       hd44780_write_char("awesome!", 8);
- *       osDelay(5000);
- *   }
- * }
  */
 
 /**

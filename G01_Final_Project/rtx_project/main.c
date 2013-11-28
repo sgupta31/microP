@@ -6,6 +6,10 @@
 #include "keypad.h"
 
 int ticks;
+extern int row;
+extern int column;
+float alpha = 0.0;
+float beta = 0.0;
 
 /**
   * @brief Program entry point
@@ -21,10 +25,7 @@ int main (void) {
 		
 		while(!ticks);
 		ticks = 0;
-		
-// 		float alpha = 0.0;
-// 		float beta = 0.0;
-// 		
+
 // 		alpha_motor(alpha);
 // 		beta_motor(beta);
 		
@@ -41,6 +42,7 @@ int main (void) {
 //     osDelay(5000);
 
 		keypad_press_check();
+		printf("key pressed = %d\n", get_key_pressed(row, column));
 		
 	}
 }

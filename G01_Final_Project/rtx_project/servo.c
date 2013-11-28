@@ -1,8 +1,8 @@
 #include "servo.h"
 #include "pwm.h"
 
-float alpha = 0.0;
-float beta = 0.0;
+extern float alpha;
+extern float beta;
 float angle_delta = (1.0);
 
 void alpha_motor(float alpha){
