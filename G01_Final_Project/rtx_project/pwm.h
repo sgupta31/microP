@@ -1,8 +1,11 @@
+#ifndef __PWM_H
+#define __PWM_H
+
 #include "stm32f4xx_conf.h"
 
 /**
 	* @file pwm.h
-	* @brief Configure TIM4 for PWM (part 5)
+	* @brief Configurations for PWM and TIM3. Used for the servo motors.
 	*/
 
 /**
@@ -14,6 +17,15 @@ void PWM_GPIO(void);
 	* @brief Configure the TIM3 parameters
 	*/
 void PWM_TIM(void);
+
+/**
+	* @brief Configure the NVIC for TIM3 interrupt
+	*/
 void PWM_NVIC(void);
+
+/**
+	* @brief A function to call all the PWM configuration functions at once
+	*/
 void PWM_configure(void);
-//void configure_TIM(void);
+
+#endif

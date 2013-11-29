@@ -2,7 +2,7 @@
 
 /**
 	* @file pwm.c
-	* @brief 
+	* @brief Configurations for PWM and TIM3. Used for the servo motors.
 	*/
 	
 uint16_t PrescalerValue = 0, Period = 0;
@@ -63,6 +63,9 @@ void PWM_TIM(void){
 	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
 }
 
+/**
+	* @brief Configure the NVIC for TIM3 interrupt
+	*/
 void PWM_NVIC(void){
 		NVIC_InitTypeDef NVIC_InitStructure;
 		NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
@@ -74,6 +77,9 @@ void PWM_NVIC(void){
 		NVIC_Init(&NVIC_InitStructure);
 }
 
+/**
+	* @brief A function to call all the PWM configuration functions at once
+	*/
 void PWM_configure(void){
 	PWM_GPIO();
 	PWM_TIM();
