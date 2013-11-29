@@ -52,7 +52,7 @@ void PWM_TIM(void){
   TIM_OCInitStructure.TIM_Pulse = 1500;
   TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
 	
-	/* PWM1 Mode configuration: Channels 1,2,3 and 4 */
+	/* PWM1 Mode configuration: Channels 1,2 */
 	TIM_OC1Init(TIM3, &TIM_OCInitStructure);
 	TIM_OC2Init(TIM3, &TIM_OCInitStructure);
 
@@ -70,7 +70,6 @@ void PWM_NVIC(void){
 		NVIC_InitTypeDef NVIC_InitStructure;
 		NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
 		
-		/* Setting the preemtion priority of the tap to be lower than the user button interrupt */
 		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
 		NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;
 		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
