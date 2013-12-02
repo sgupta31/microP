@@ -9,73 +9,72 @@
 	* @file lcd.h
 	* @brief Functions to initialize operate the LCD
 	* 
-	* HD44780 Driver
+	* LCD Driver
 	*
 	* Contrast line should be connected to GND
 	* R/W line should be connected to GND since we always write to LCD
 	* Vss connect to GND
 	* Vdd can be connected to +5V
 	*
-	* See the header file to see the port assignments
 	*/
 
 /* Clocks for port E and B */
-#define HD44780_GPIO_CLOCK1 	RCC_AHB1Periph_GPIOE
-#define HD44780_GPIO_CLOCK2 	RCC_AHB1Periph_GPIOB
+#define GPIO_CLOCK1 	RCC_AHB1Periph_GPIOE
+#define GPIO_CLOCK2 	RCC_AHB1Periph_GPIOB
 
 /* Pin definitions */
-#define HD44780_RS					GPIO_Pin_9
-#define GPIO_PORT_RS		        GPIOE
+#define RS GPIO_Pin_9
+#define GPIO_PORT_RS GPIOE
 
-#define HD44780_E 					GPIO_Pin_10
-#define GPIO_PORT_E		            GPIOE
+#define E GPIO_Pin_10
+#define GPIO_PORT_E	GPIOE
 
-#define HD44780_DB0					GPIO_Pin_11
-#define GPIO_PORT_DB0		        GPIOE
+#define D0 GPIO_Pin_11
+#define GPIO_PORT_D0 GPIOE
 
-#define HD44780_DB1					GPIO_Pin_12
-#define GPIO_PORT_DB1		        GPIOE
+#define D1 GPIO_Pin_12
+#define GPIO_PORT_D1 GPIOE
 
-#define HD44780_DB2					GPIO_Pin_13
-#define GPIO_PORT_DB2		        GPIOE
+#define D2 GPIO_Pin_13
+#define GPIO_PORT_D2 GPIOE
 
-#define HD44780_DB3					GPIO_Pin_14
-#define GPIO_PORT_DB3		        GPIOE
+#define D3 GPIO_Pin_14
+#define GPIO_PORT_D3 GPIOE
 
-#define HD44780_DB4					GPIO_Pin_15
-#define GPIO_PORT_DB4		        GPIOE
+#define D4 GPIO_Pin_15
+#define GPIO_PORT_D4 GPIOE
 
-#define HD44780_DB5					GPIO_Pin_10
-#define GPIO_PORT_DB5		        GPIOB
+#define D5 GPIO_Pin_10
+#define GPIO_PORT_D5 GPIOB
 
-#define HD44780_DB6					GPIO_Pin_11
-#define GPIO_PORT_DB6		        GPIOB
+#define D6 GPIO_Pin_11
+#define GPIO_PORT_D6 GPIOB
 
-#define HD44780_DB7					GPIO_Pin_12
-#define GPIO_PORT_DB7		        GPIOB
+#define D7 GPIO_Pin_12
+#define GPIO_PORT_D7 GPIOB
 
-#define RS_COMMAND				0
-#define RS_CHAR						1
+#define RS_COMMAND 0
+#define RS_CHAR	1
 
 /* Commands */
-#define HD44780_TWO_LINE_ENABLE		    	0x38
-#define HD44780_8_BIT_MODE              0x30
-#define HD44780_DISPLAY_ON							0x0C
-#define HD44780_CURSOR_UNDERLINE  			0x02
-#define HD44780_CURSOR_BLINK 						0x09
-#define HD44780_CURSOR_BLINK_UNDERLINE 	0x0F
-#define HD44780_CLEAR_DISPLAY						0x01
-#define HD44780_LOCATION_COMMAND        0x80
+#define TWO_LINE_ENABLE 0x38
+#define EIGHT_BIT_MODE 0x30
+#define DISPLAY_ON 0x0C
+#define CURSOR_UNDERLINE 0x02
+#define CURSOR_BLINK 0x09
+#define CURSOR_BLINK_UNDERLINE 0x0F
+#define CLEAR_DISPLAY 0x01
+#define LOCATION_COMMAND 0x80
 
 /* function to return the right enum if VAL == 0 or VAL == 1 */
 /* function needed to remove warning when GPIO_WriteBit expects an enum */
 /* whereas an int is provided instead */
-#define BIT_ACTION(VAL) ((VAL) == 0 ? Bit_RESET: Bit_SET)
+//#define BIT_ACTION(VAL) ((VAL) == 0 ? Bit_RESET: Bit_SET)
 
 /**
 	* @brief Initialize the LCD to its default state
 	*/
-void hd44780_init(void);
+void lcd_init(void);
 
 
 /**
@@ -83,42 +82,48 @@ void hd44780_init(void);
 	* @param val -the data to send to the data lines
 	* @param rs_line -value of the RS line
 	*/
-void hd44780_send_data(uint8_t val, uint8_t rs_line);
+void send_data(uint8_t val, uint8_t rs_line);
 
 /**
 	* @brief Enables write to the LCD
 	* @param rs_line -value of the RS line
 	*/
-void hd44780_enable_write(uint8_t rs_line);
+void enable_write(uint8_t rs_line);
 
 /**
 	* @brief Write the characters given by text parameter to the display
 	* @param text -the characters to display on the LCD
 	* @param length -length of the text
 	*/
-void hd44780_write_char(char *text, uint8_t length);
+void write_char(char *text, uint8_t length);
 
 /**
 	* @brief Clear the display
 	* Data lines (D7-D0) = 00000001 = 0x01
 	*/
-void hd44780_clear_display(void);
+void clear_display(void);
 
 /**
 	* @brief Move the cursor to a location on the screen based on location parameter
 	* @param location -the int of the location to move to
 	*/
-void hd44780_move_cursor(uint8_t location);
+void move_cursor(uint8_t location);
 
 /**
 	* @brief Move the cursor to the second line
 	*/
-void hd44780_move_second_line(void);
+void move_second_line(void);
 
 /**
 	* @brief Make the cursor blink
 	* Data lines (D7-D0) = 00001001 = 0x09
 	*/
-void hd44780_blink_cursor(void) ;
+void blink_cursor(void) ;
+
+/**
+	* @brief Funcion return the BitAction depending on the val parameter
+	* @return Bit_SET if val=1, Bit_RESET if val=0
+	*/
+BitAction convert_to_bitaction(uint8_t val);
 
 #endif

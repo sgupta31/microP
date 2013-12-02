@@ -16,7 +16,7 @@ float beta = 0.0;
   */
 int main (void) {
  	PWM_configure();
-	hd44780_init();
+	lcd_init();
 	keypad_configuration();
 	
 	ticks = 0;
