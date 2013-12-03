@@ -1,3 +1,12 @@
+/**
+* @file keypad.h
+*	@author Group 1: Christian Despatie, Lena Hsieh, Surbhi Gupta & Kishen Shakespeare
+* @version 1.0
+*
+*	@brief  Functions to initialize operate keypad
+*
+*/
+
 #ifndef __KEYPAD_H
 #define __KEYPAD_H
 
@@ -76,17 +85,5 @@ void keypad_press_check(void);
 	*
 	*/
 int get_key_pressed(int row, int column);
-
-/**
-	* @brief Increase/decrease alpha and beta based on the key
-	* @param key -the key pressed
-	*
-	* key=2 -> alpha--
-	* key=8 -> alpha++
-	* key=4 -> beta--
-	* key=6 -> beta++
-	*
-	*/
-void keypad_control(int key);
 
 #endif

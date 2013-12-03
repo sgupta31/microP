@@ -1,17 +1,21 @@
-#include "keypad.h"
-
 /**
-	* @file keypad.c
-	* @brief Functions to initialize operate keypad
-	*/
+* @file keypad.c
+*	@author Group 1: Christian Despatie, Lena Hsieh, Surbhi Gupta & Kishen Shakespeare
+* @version 1.0
+*
+*	@brief  Functions to initialize operate keypad
+*
+*/
+
+#include "keypad.h"
 	
 /* 2-D array for keypad button mapping */
 int A[4][3] = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } , { 10, 0, 11 } };
 
 int column;
 int row;	
-extern float alpha;
-extern float beta;
+extern int alpha;
+extern int beta;
 	
 /* ROWS */
 GPIO_InitTypeDef GPIO_InitStructure1;
@@ -163,6 +167,13 @@ void keypad_press_check() {
 		column_check();
 
 	}
+		
+	// If no button pressed, default to '0'
+	if(!isPressed) {
+		column = 1;
+		row = 3;
+	}
+	
 }
 
 /**
@@ -179,29 +190,3 @@ int get_key_pressed(int row, int column)
 	return A[row][column];
 }
 
-/**
-	* @brief Increase/decrease alpha and beta based on the key
-	* @param key -the key pressed
-	*
-	* key=2 -> alpha--
-	* key=8 -> alpha++
-	* key=4 -> beta--
-	* key=6 -> beta++
-	*
-	*/
-void keypad_control(int key){
-	switch(key){
-		case 2: 
-			alpha--;
-			break;
-		case 4:
-			beta--;
-			break;
-		case 6: 
-			beta++;
-			break;
-		case 8: 
-			alpha++;
-			break;
-	};
-}

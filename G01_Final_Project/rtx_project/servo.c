@@ -1,37 +1,35 @@
+/**
+* @file servo.c
+*	@author Group 1: Christian Despatie, Lena Hsieh, Surbhi Gupta & Kishen Shakespeare
+* @version 1.0
+*
+*	@brief  Functions to initialize operate the servo motors
+*
+*/
+
 #include "servo.h"
 #include "pwm.h"
-
-/**
-	* @file servo.c
-	* @brief Functions to initialize operate the servo motors
-	*/
-	
-extern float alpha;
-extern float beta;
-float angle_delta = (1.0);
 
 /**
 	* @brief Rotate the alpha servo motor
 	* @param alpha -the alpha angle to rotate to
 	*/
-void alpha_motor(float alpha){
+void alpha_motor(uint8_t alpha){
 	
-		/* Based on HS422 data sheet, the servo motor's operating angle is 45 degrees/ 400 microsec  */
-		/* Inital state is at 1100 microsec */
 		if ((alpha < 180) && (alpha >=0)) {
-			TIM3->CCR1 = 1100 + (alpha * (400.0/45.0));
+			TIM4->CCR1 = 1100 + (alpha * (400/45));
 		}
+		
 }
 
 /**
 	* @brief Rotate the beta servo motor
 	* @param beta -the beta angle to rotate to
 	*/
-void beta_motor(float beta){
+void beta_motor(uint8_t beta){
 	
-		/* Based on HS422 data sheet, the servo motor's operating angle is 45 degrees/ 400 microsec  */
-		/* Inital state is at 1100 microsec */
 		if ((beta < 180) && (beta >=0)) {
-			TIM3->CCR2 = 1100 + (beta * (400.0/45.0));
+			TIM4->CCR2 = 1100 + (beta * (400/45));
 		}
+		
 }

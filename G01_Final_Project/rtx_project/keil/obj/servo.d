@@ -1,8 +1,5 @@
 .\obj\servo.o: ..\servo.c
 .\obj\servo.o: ..\servo.h
-.\obj\servo.o: ..\pwm.h
-.\obj\servo.o: ..\stm32f4xx_conf.h
-.\obj\servo.o: ../STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h
 .\obj\servo.o: ../CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 .\obj\servo.o: ../inc/core_cm4.h
 .\obj\servo.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
@@ -11,6 +8,8 @@
 .\obj\servo.o: ../inc/core_cm4_simd.h
 .\obj\servo.o: ../CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 .\obj\servo.o: ../stm32f4xx_conf.h
+.\obj\servo.o: ../STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h
+.\obj\servo.o: ../CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 .\obj\servo.o: ../STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_can.h
 .\obj\servo.o: ../STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_crc.h
 .\obj\servo.o: ../STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_cryp.h
@@ -36,3 +35,4 @@
 .\obj\servo.o: ../STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h
 .\obj\servo.o: ../STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_wwdg.h
 .\obj\servo.o: ../STM32F4xx_StdPeriph_Driver/inc/misc.h
+.\obj\servo.o: ..\pwm.h

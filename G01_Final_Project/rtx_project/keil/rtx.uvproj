@@ -29,7 +29,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>C:\Keil\ARM\SFD\ST\STM32F4xx\STM32F40x.SFR</SFDFile>
+          <SFDFile></SFDFile>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
           <IncludePath></IncludePath>
@@ -402,11 +402,6 @@
               <FileType>2</FileType>
               <FilePath>../startup_stm32f4xx.s</FilePath>
             </File>
-            <File>
-              <FileName>fputc_debug.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\fputc_debug.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -436,6 +431,66 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../main.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI_Controller.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SPI_Controller.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI_Controller.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\SPI_Controller.h</FilePath>
+            </File>
+            <File>
+              <FileName>Radio_Driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Radio_Driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>Radio_Driver.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Radio_Driver.h</FilePath>
+            </File>
+            <File>
+              <FileName>TIM_Config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\TIM_Config.c</FilePath>
+            </File>
+            <File>
+              <FileName>TIM_Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\TIM_Config.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4_discovery_lis302dl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\stm32f4_discovery_lis302dl.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4_discovery_lis302dl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\stm32f4_discovery_lis302dl.h</FilePath>
+            </File>
+            <File>
+              <FileName>Interrupt_Conf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Interrupt_Conf.c</FilePath>
+            </File>
+            <File>
+              <FileName>Interrupt_Conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Interrupt_Conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>SMARTRF_CC2500.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\SMARTRF_CC2500.h</FilePath>
+            </File>
+            <File>
+              <FileName>fputc_debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\fputc_debug.c</FilePath>
             </File>
             <File>
               <FileName>pwm.c</FileName>
@@ -2446,21 +2501,6 @@
               <FileName>arm_rfft_q31.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\CMSIS\DSP_Lib\Source\TransformFunctions\arm_rfft_q31.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>LIS302DL</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32f4_discovery_lis302dl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\LIS302DL\src\stm32f4_discovery_lis302dl.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4_discovery_lis302dl.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\LIS302DL\inc\stm32f4_discovery_lis302dl.h</FilePath>
             </File>
           </Files>
         </Group>

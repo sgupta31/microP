@@ -1,19 +1,14 @@
+/**
+* @file lcd.c
+*	@author Group 1: Christian Despatie, Lena Hsieh, Surbhi Gupta & Kishen Shakespeare
+* @version 1.0
+*
+*	@brief  Functions to initialize operate the LCD
+*
+*/
+
 #include "lcd.h"
 #include "cmsis_os.h"
-
-/**
-	* @file lcd.c
-	* @brief Functions to initialize operate the LCD
-	* 
-	* LCD Driver
-	*
-	* Contrast line should be connected to GND
-	* R/W line should be connected to GND since we always write to LCD
-	* Vss connect to GND
-	* Vdd can be connected to +5V
-	*
-	* See the header file to see the port assignments
-	*/
 
 /**
  * @brief Initializes the GPIO pins that will be used with the LCD display
@@ -45,29 +40,12 @@ static void gpio_init() {
 
   /* Now initialize the data line, DB7 - DB0 */
   /* See the header file for the exact pin assignments */
-	GPIO_InitStructure.GPIO_Pin = D0;
-	GPIO_Init(GPIO_PORT_D0, &GPIO_InitStructure);
-
-	GPIO_InitStructure.GPIO_Pin = D1;
-	GPIO_Init(GPIO_PORT_D1, &GPIO_InitStructure);
-
-	GPIO_InitStructure.GPIO_Pin = D2;
-	GPIO_Init(GPIO_PORT_D2, &GPIO_InitStructure);
-
-	GPIO_InitStructure.GPIO_Pin = D3;
-	GPIO_Init(GPIO_PORT_D3, &GPIO_InitStructure);  
-    
- 	GPIO_InitStructure.GPIO_Pin = D4;
-	GPIO_Init(GPIO_PORT_D4, &GPIO_InitStructure);  
-    
- 	GPIO_InitStructure.GPIO_Pin = D5;
-	GPIO_Init(GPIO_PORT_D5, &GPIO_InitStructure);  
-    
- 	GPIO_InitStructure.GPIO_Pin = D6;
-	GPIO_Init(GPIO_PORT_D6, &GPIO_InitStructure);
-    
-	GPIO_InitStructure.GPIO_Pin = D7;
-	GPIO_Init(GPIO_PORT_D7, &GPIO_InitStructure);    
+	
+	GPIO_InitStructure.GPIO_Pin = D0 | D1 | D2 | D3 | D4;
+	GPIO_Init(GPIO_PORT_E, &GPIO_InitStructure);
+	
+	GPIO_InitStructure.GPIO_Pin = D5 | D6 | D7;
+	GPIO_Init(GPIO_PORT_B, &GPIO_InitStructure);
 	
 }
 
@@ -78,13 +56,9 @@ void lcd_init() {
 
 	/* Initialize the GPIO pins first */
 	gpio_init();
-
-	/* Make sure we are in 8-bit mode before we switch to nibble mode */
-	/* We want to be in a reset state first */
+	
+	/* Initialize to 8 Bit mode */
 	send_data(EIGHT_BIT_MODE, RS_COMMAND);
-
-	/* Enable two lines display */
-	send_data(TWO_LINE_ENABLE, RS_COMMAND);
 
 	/* Turn on the display */
 	send_data(DISPLAY_ON, RS_COMMAND);
@@ -92,45 +66,37 @@ void lcd_init() {
 
 /**
 	* @brief Sets the data pins (D7-D0) individually to 0 or 1
-	* @param val -the data to send to the data lines
+	* @param data -the data to send to the data lines
 	* @param rs_line -value of the RS line
 	*/
-void send_data(uint8_t val, uint8_t rs_line) {
+void send_data(uint8_t data, uint8_t rs_line) {
 
-	/* Right shift the val parameter and AND with 0x01 to get the corresponding bit */
-	GPIO_WriteBit(GPIO_PORT_D0, D0, convert_to_bitaction(0x01 & val));
+	uint8_t bitValue = 0x01 & data;
+	/* Right shift the data parameter and AND with 0x01 to get the corresponding bit */
+	GPIO_WriteBit(GPIO_PORT_E, D0, convert_to_bitaction(bitValue));
 	
-	val >>= 1;
-	GPIO_WriteBit(GPIO_PORT_D1, D1, convert_to_bitaction(0x01 & val));
+	bitValue = 0x01 & (data >>= 1);
+	GPIO_WriteBit(GPIO_PORT_E, D1, convert_to_bitaction(bitValue));
 
-	val >>= 1;
-	GPIO_WriteBit(GPIO_PORT_D2, D2, convert_to_bitaction(0x01 & val));
+	bitValue = 0x01 & (data >>= 1);
+	GPIO_WriteBit(GPIO_PORT_E, D2, convert_to_bitaction(bitValue));
 
-	val >>= 1;
-	GPIO_WriteBit(GPIO_PORT_D3, D3, convert_to_bitaction(0x01 & val)); 
+	bitValue = 0x01 & (data >>= 1);
+	GPIO_WriteBit(GPIO_PORT_E, D3, convert_to_bitaction(bitValue)); 
 
-	val >>= 1;
-	GPIO_WriteBit(GPIO_PORT_D4, D4, convert_to_bitaction(0x01 & val));
+	bitValue = 0x01 & (data >>= 1);
+	GPIO_WriteBit(GPIO_PORT_E, D4, convert_to_bitaction(bitValue));
 
-	val >>= 1;
-	GPIO_WriteBit(GPIO_PORT_D5, D5, convert_to_bitaction(0x01 & val));
+	bitValue = 0x01 & (data >>= 1);
+	GPIO_WriteBit(GPIO_PORT_B, D5, convert_to_bitaction(bitValue));
     
-	val >>= 1;
-	GPIO_WriteBit(GPIO_PORT_D6, D6, convert_to_bitaction(0x01 & val));
+	bitValue = 0x01 & (data >>= 1);
+	GPIO_WriteBit(GPIO_PORT_B, D6, convert_to_bitaction(bitValue));
     
-	val >>= 1;
-	GPIO_WriteBit(GPIO_PORT_D7, D7, convert_to_bitaction(0x01 & val));
+	bitValue = 0x01 & (data >>= 1);
+	GPIO_WriteBit(GPIO_PORT_B, D7, convert_to_bitaction(bitValue));
        
 	/* write the data to the display */
-	enable_write(rs_line);
-}
-
-/**
-	* @brief Enables write to the LCD
-	* @param rs_line -value of the RS line
-	*/
-void enable_write(uint8_t rs_line) {
-
 	osDelay(1);
 	
 	/* Set the RS line to high/low based on rs_line parameter */
@@ -188,26 +154,11 @@ void move_cursor(uint8_t location) {
 }
 
 /**
-	* @brief Move the cursor to the second line
+	* @brief Helper Function return the BitAction depending on the data parameter
+	* @return Bit_SET if data=1, Bit_RESET if data=0
 	*/
-void move_second_line() {
-    move_cursor(40);
-}
-
-/**
-	* @brief Make the cursor blink
-	* Data lines (D7-D0) = 00001001 = 0x09
-	*/
-void blink_cursor() {
-	send_data(CURSOR_BLINK, RS_COMMAND);
-}
-
-/**
-	* @brief Funcion return the BitAction depending on the val parameter
-	* @return Bit_SET if val=1, Bit_RESET if val=0
-	*/
-BitAction convert_to_bitaction(uint8_t val) {
-	if (val) 
+BitAction convert_to_bitaction(uint8_t data) {
+	if (data) 
 	{
 		return Bit_SET;
 	} 

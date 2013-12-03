@@ -1,5 +1,5 @@
-.\obj\stm32f4_discovery_lis302dl.o: ..\LIS302DL\src\stm32f4_discovery_lis302dl.c
-.\obj\stm32f4_discovery_lis302dl.o: ../inc/stm32f4_discovery_lis302dl.h
+.\obj\stm32f4_discovery_lis302dl.o: ..\stm32f4_discovery_lis302dl.c
+.\obj\stm32f4_discovery_lis302dl.o: ..\stm32f4_discovery_lis302dl.h
 .\obj\stm32f4_discovery_lis302dl.o: ../CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 .\obj\stm32f4_discovery_lis302dl.o: ../inc/core_cm4.h
 .\obj\stm32f4_discovery_lis302dl.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
